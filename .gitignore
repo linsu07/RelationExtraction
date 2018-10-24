@@ -1,0 +1,22 @@
+*.class
+*.dic
+*.iml
+*.dat
+*.yes
+.DS_Store
+*.pyc
+
+target/
+.classpath
+.project
+.settings/
+.idea/
+log/
+log4j.properties
+*.result
+out/
+
+# ignore self trained hanlp dictionary
+src/main/resources/data/dictionary/TrainedDictionary*
+!/data/hanlpdata/data/
+
