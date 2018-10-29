@@ -46,7 +46,7 @@ class BIRnnLayer(tf.layers.Layer):
                                         ,feature
                                         ,sequence_length=length
                                         ,dtype=tf.float32)
-        bi_states = tf.concat(states[0],-1)
+        bi_states = tf.concat([states[0][1], states[1][1]],-1)
         bi_states = tf.reshape(bi_states,[-1,sentence_number,2*self.params.rnn_hidden_size])
         inputs[self.params.feature_name] = bi_states
         return inputs

@@ -33,9 +33,9 @@ class SparkInput():
         def parse(raw):
             context_dic,seq_dic = tf.parse_single_sequence_example(serialized=raw, context_features=self.conttext_spec, sequence_features=self.sequence_spec)
             if params.is_multi_label:
-                # label 这里的default_value，表示数据没有类别时，应取类别NA
+                # label
                 multi_label = tf.cast(tf.sparse_tensor_to_dense(context_dic.get(params.label_name), default_value=0), tf.int32)
-                # multi_hot label
+                # multi_hot label, NA's id is -1, so after one hot, It's label is all zeros
                 label_string = tf.cast(tf.reduce_sum(tf.one_hot(multi_label, params.nClasses, axis=-1, name="label_onehot"), axis=-2), tf.int32)
             else:
                 label_string = tf.cast(context_dic.get(params.label_name), tf.int32)
